@@ -1,6 +1,7 @@
 import express from "express";
 import dotenv from "dotenv"
 import { mainApp } from "./mainApp";
+import { dbConnect } from "./config/db";
 dotenv.config()
 
 
@@ -11,6 +12,7 @@ const app = express();
 mainApp(app);
 
 const server = app.listen(process.env.PORT || port, () => {
+    dbConnect()
     console.log("server is live")
 });
 
