@@ -1,5 +1,7 @@
-import express, { Application, Request, Response } from "express"
+import express, { Application, NextFunction, Request, Response } from "express"
 import cors from "cors"
+import { HTTP, mainError } from "./error/mainError"
+import { errorHandling } from "./error/ErrorHandling"
 
 export const mainApp = (app: Application)=>{
     app.use(cors())
@@ -17,4 +19,17 @@ export const mainApp = (app: Application)=>{
             })
         }
     })
+
+    app.all("*", (req : Request, res : Response, next : NextFunction)=>{
+        next(
+            new mainError({
+                name : "Router Error",
+                message : "this router path is not correct",
+                status : HTTP.BAD,
+                success : false,
+            })
+        )
+    })
+
+    app.use(errorHandling)
 }
