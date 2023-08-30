@@ -10,6 +10,6 @@ const storage = multer.diskStorage({
     }
   })
   
-  const upload = multer({ storage: storage }).single("image")
-
-  export default upload;
+ export const upload = multer({ storage: storage }).single("image")
+ 
+ export const multiplePics = multer({ storage: storage }).array("image", 5)

@@ -18,12 +18,12 @@ export const registerUser = async (req: any, res: Response) => {
       avatar: secure_url,
       avatarUrl: public_id,
     });
-    return response.status(201).json({
+    return res.status(201).json({
         message:"user created successfully",
         data: user
     })
 
-  } catch (error) {
+  } catch (error : any) {
     return res.status(404).json({
       message: "user credentials required",
       data:error.message
@@ -54,7 +54,7 @@ export const siginIn = async (req:Request, res: Response) => {
       }
     
   
-    } catch (error) {
+    } catch (error : any) {
       return res.status(404).json({
         message: "user credentials required",
         data:error.message
@@ -69,7 +69,7 @@ export const siginIn = async (req:Request, res: Response) => {
             message:"can see all users",
             data:user
         })
-    } catch (error) {
+    } catch (error : any) {
         return res.status(404).json({
             message: "can't view users",
             data:error.message
@@ -85,7 +85,7 @@ export const siginIn = async (req:Request, res: Response) => {
             message:"can see one users",
             data:user
         })
-    } catch (error) {
+    } catch (error : any) {
         return res.status(404).json({
             message: "can't view one user",
             data:error.message

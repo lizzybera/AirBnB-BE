@@ -2,6 +2,8 @@ import express, { Application, NextFunction, Request, Response } from "express"
 import cors from "cors"
 import { HTTP, mainError } from "./error/mainError"
 import { errorHandling } from "./error/ErrorHandling"
+import user from "./router/userRouter"
+import room from "./router/roomRouter"
 
 export const mainApp = (app: Application)=>{
     app.use(cors())
@@ -19,6 +21,9 @@ export const mainApp = (app: Application)=>{
             })
         }
     })
+
+    app.use("/api/v1", user)
+    app.use("/api/v1", room)
 
     app.all("*", (req : Request, res : Response, next : NextFunction)=>{
         next(
