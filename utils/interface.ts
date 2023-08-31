@@ -8,5 +8,9 @@ export interface iuser{
     avatarUrl?:string
     room:{}[]
 }
+export interface iBook {
+
+}
+export interface iBookData extends iBook, mongoose.Document{}
 
 export interface iUserData extends iuser, mongoose.Document{}
