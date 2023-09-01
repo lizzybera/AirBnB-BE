@@ -31,9 +31,10 @@ export const createRoom = async (req : Request, res : Response)=>{
             data : roomed
         })
         
-    } catch (error ) {
+    } catch (error : any ) {
         return res.status(HTTP.BAD).json({
-            message : "error"
+            message : "error",
+            data : error.message
         })
         
     }

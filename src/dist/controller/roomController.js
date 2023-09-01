@@ -40,7 +40,8 @@ const createRoom = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     }
     catch (error) {
         return res.status(mainError_1.HTTP.BAD).json({
-            message: "error"
+            message: "error",
+            data: error.message
         });
     }
 });

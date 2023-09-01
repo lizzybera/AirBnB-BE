@@ -12,4 +12,4 @@ const storage = multer.diskStorage({
   
  export const upload = multer({ storage: storage }).single("image")
  
- export const multiplePics = multer({ storage: storage }).array("image", 5)
+ export const multiplePics = multer({ storage: storage }).array("avatar", 5)
