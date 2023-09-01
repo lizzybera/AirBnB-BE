@@ -23,9 +23,9 @@ const roomSchema = new mongoose.Schema<iRoom>({
     pix : {
         type : String
     },
-    pixes : [{
-        type : Array<String>
-    }],
+    pixes : {
+        type : String
+    },
     user : {
         type : mongoose.Types.ObjectId,
         ref : "users"
