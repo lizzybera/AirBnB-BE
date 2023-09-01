@@ -10,5 +10,5 @@ const router = express_1.default.Router();
 router.route("/viewRooms").get(roomController_1.viewRooms);
 router.route("/:roomID/viewRoom").get(roomController_1.viewRoom);
 router.route("/:userID/viewUserRoom").get(roomController_1.viewUserRooms);
-router.route("/:userID/createRoom").post(multer_1.upload, roomController_1.createRoom);
+router.route("/:userID/createRoom").post(multer_1.multiplePics, roomController_1.createRoom);
 exports.default = router;

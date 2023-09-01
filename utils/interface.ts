@@ -18,7 +18,7 @@ export interface iRoom {
     Description : string
     location : string
     pix : string
-    pixes : string
+    pixes : Array<string>
     user : {}
 }
 

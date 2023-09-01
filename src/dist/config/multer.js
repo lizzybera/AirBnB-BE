@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.upload = void 0;
+exports.multiplePics = exports.upload = void 0;
 const multer_1 = __importDefault(require("multer"));
 const storage = multer_1.default.diskStorage({
     destination: function (req, file, cb) {
@@ -15,4 +15,4 @@ const storage = multer_1.default.diskStorage({
     }
 });
 exports.upload = (0, multer_1.default)({ storage: storage }).single("image");
-//  export const multiplePics = multer({ storage: storage }).array("avatar", 5)
+exports.multiplePics = (0, multer_1.default)({ storage: storage }).array("avatar", 5);

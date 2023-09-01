@@ -26,9 +26,9 @@ const roomSchema = new mongoose_1.default.Schema({
     pix: {
         type: String
     },
-    pixes: {
-        type: String
-    },
+    pixes: [{
+            type: (Array)
+        }],
     user: {
         type: mongoose_1.default.Types.ObjectId,
         ref: "users"
