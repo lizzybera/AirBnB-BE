@@ -5,23 +5,16 @@ import roomModel from "../model/roomModel"
 import mongoose from "mongoose"
 import cloudinary from "../config/cloudinary"
 
-export const createRoom = async (req : Request, res : Response)=>{
+export const createRoom = async (req : any, res : Response)=>{
     try {
         const {userID} = req.params
         const {roomType, bedSize, Guest, price, Description, location} = req.body
 
         const user : any = await userModel.findById(userID)
 
-        let data : any = req.files;
-        let pixes : Array<string> = []
+        const { secure_url} = await cloudinary.uploader.upload(req.file?.path)
 
-        for (let i of data){
-            const {secure_url} = await cloudinary.uploader.upload(i.path)
-
-            pixes.push(secure_url)
-        }
-
-        const roomed : any = await roomModel.create({roomType, bedSize, Guest, price, Description, location, pixes})
+        const roomed : any = await roomModel.create({roomType, bedSize, Guest, price, Description, location, pixes : secure_url})
 
         user?.room?.push(new mongoose.Types.ObjectId(roomed._id!))
         user.save()

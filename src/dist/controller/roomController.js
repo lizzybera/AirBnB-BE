@@ -19,19 +19,14 @@ const roomModel_1 = __importDefault(require("../model/roomModel"));
 const mongoose_1 = __importDefault(require("mongoose"));
 const cloudinary_1 = __importDefault(require("../config/cloudinary"));
 const createRoom = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    var _a;
+    var _a, _b;
     try {
         const { userID } = req.params;
         const { roomType, bedSize, Guest, price, Description, location } = req.body;
         const user = yield userModel_1.default.findById(userID);
-        let data = req.files;
-        let pixes = [];
-        for (let i of data) {
-            const { secure_url } = yield cloudinary_1.default.uploader.upload(i.path);
-            pixes.push(secure_url);
-        }
-        const roomed = yield roomModel_1.default.create({ roomType, bedSize, Guest, price, Description, location, pixes });
-        (_a = user === null || user === void 0 ? void 0 : user.room) === null || _a === void 0 ? void 0 : _a.push(new mongoose_1.default.Types.ObjectId(roomed._id));
+        const { secure_url } = yield cloudinary_1.default.uploader.upload((_a = req.file) === null || _a === void 0 ? void 0 : _a.path);
+        const roomed = yield roomModel_1.default.create({ roomType, bedSize, Guest, price, Description, location, pixes: secure_url });
+        (_b = user === null || user === void 0 ? void 0 : user.room) === null || _b === void 0 ? void 0 : _b.push(new mongoose_1.default.Types.ObjectId(roomed._id));
         user.save();
         return res.status(mainError_1.HTTP.OK).json({
             message: "Room created",
